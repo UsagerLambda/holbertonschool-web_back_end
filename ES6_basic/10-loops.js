@@ -1,8 +1,9 @@
 export default function appendToEachArrayValue(array, appendString) {
-    for (var idx in array) {
-      let value = array[idx];
-      array[idx] = appendString + value;
+    // pour value dans array
+    for (let value of array) {
+        // value égal "correctly-"" + "value" (attache les deux strings (correctly-value))
+      value = appendString + value;
     }
-  
+    // retourne la liste modifiée
     return array;
   }
