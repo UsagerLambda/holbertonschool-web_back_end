@@ -1,3 +1,4 @@
-export default function concatArrays(array1, array2, string) { return [...array1, ...array2, ...string];
+export default function concatArrays(array1, array2, string) {
+  return [...array1, ...array2, ...string];
 }
 // ""..."" décompose les éléments du tableau fournis
