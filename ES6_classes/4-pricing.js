@@ -1,6 +1,5 @@
 /* eslint import/extensions: "off" */
-/* eslint-disable-line no-unused-vars */
-import Currency from './3-currency.js';
+import Currency from './3-currency.js'; // eslint-disable-line no-unused-vars
 
 export default class Pricing {
   constructor(amount, currency) {
