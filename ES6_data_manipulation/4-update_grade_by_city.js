@@ -4,12 +4,10 @@ export default function updateStudentGradeByCity(listStudents, city, newGrades) 
     .map((student) => {
       // trouve les newGrades correspondant aux id des étudiants
       const gradeObj = newGrades.find((grade) => grade.studentId === student.id);
-      // si gradeObj n'est pas nULL
-      if (gradeObj) {
-        // retourne student avec le champ grade = gradeObj
-        return { ...student, grade: gradeObj };
-      }
-      // si gradeObj est NULL (donc pas de correspondance grade.studentId avec student.id)
-      return { ...student, grade: 'N/A' };
+      // si gradeObj existe grade: gradeObj sinon gradeObj.grade : N/A
+      return {
+        ...student,
+        grade: gradeObj ? gradeObj.grade : 'N/A',
+      };
     });
 }
