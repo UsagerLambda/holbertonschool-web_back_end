@@ -25,6 +25,7 @@ module.exports = {
         'LabeledStatement',
         'WithStatement',
       ],
+      'jest/prefer-todo': 'off',
     },
     overrides:[
       {
