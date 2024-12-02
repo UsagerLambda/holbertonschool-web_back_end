@@ -5,8 +5,14 @@ Function that take a list of floats as arguments
 and return their sum as a float
 """
 
+from typing import List
 
-def sum_list(input_list: list[float]) -> float:
+"""
+module
+"""
+
+
+def sum_list(input_list: List[float]) -> float:
     """
 
     Args:
