@@ -19,4 +19,4 @@ async def wait_random(max_delay: int = 10) -> float:
     # Suspend l'exécution de la coroutine pour le délai généré,
     # sans bloquer les autres tâches asynchrones
     await asyncio.sleep(delay)
-    return delay # renvoie delay
+    return delay
