@@ -6,6 +6,10 @@ Fonction that take a float argument and return it multiplie by himself
 
 from typing import Callable
 
+"""
+module
+"""
+
 
 def make_multiplier(multiplier: float) -> Callable[[float], float]:
     """
