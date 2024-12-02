@@ -1,4 +1,4 @@
-# 0-add.py
+#!/usr/bin/env python3
 
 """
 This module provides utility functions for mathematical operations.
