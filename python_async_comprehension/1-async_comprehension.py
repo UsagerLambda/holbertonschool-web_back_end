@@ -4,10 +4,11 @@ This module demonstrates the use of asynchronous comprehensions to
 collect values from an asynchronous generator.
 """
 
+from typing import List
 async_generator = __import__('0-async_generator').async_generator
 
 
-async def async_comprehension():
+async def async_comprehension() -> List[float]:
     """
     Collects values from an async generator using an async list comprehension.
 
