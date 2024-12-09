@@ -67,6 +67,16 @@ class Server:
 
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+        """
+        return a dict with the infos filled
+
+        Args:
+            page (int, optional): index start value. Defaults to 1.
+            page_size (int, optional): size of a page. Defaults to 10.
+
+        Returns:
+            Dict: dict with infos filled
+        """
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
         dataset = self.dataset()
