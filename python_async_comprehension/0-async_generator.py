@@ -6,9 +6,10 @@ float numbers with a delay between each generation.
 
 import random
 import asyncio
+from typing import AsyncGenerator
 
 
-async def async_generator():
+async def async_generator() -> AsyncGenerator[float, None]:
     """
     Asynchronous generator that yields random float numbers.
 
