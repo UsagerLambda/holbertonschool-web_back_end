@@ -65,8 +65,8 @@ class Server:
             return []
         return dataset[start:end]
 
-
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Optional[int]]:
+    def get_hyper(self, page: int = 1, page_size: int = 10
+                  ) -> Dict[str, Union[int, List[List], None]]:
         """
         return a dict with the infos filled
 
