@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-""" 1-async_comprehension.py """
+"""
+This module demonstrates the use of asynchronous comprehensions to
+collect values from an asynchronous generator.
+"""
 
 async_generator = __import__('0-async_generator').async_generator
 

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-""" 0-async_generator.py """
+"""
+This module demonstrates an asynchronous generator that produces random
+float numbers with a delay between each generation.
+"""
 
 import random
 import asyncio

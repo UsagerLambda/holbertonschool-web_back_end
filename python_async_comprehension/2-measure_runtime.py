@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-""" 2-measure_runtime.py """
+"""
+This module measures the execution time of running an asynchronous
+comprehension multiple times concurrently.
+"""
 
 import asyncio
 import time
