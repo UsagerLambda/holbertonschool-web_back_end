@@ -1,6 +1,7 @@
+const fs = require('fs');
+
 async function countStudents(path) {
   return new Promise((resolve, reject) => {
-    const fs = require('fs');
     fs.readFile(path, 'utf8', (err, data) => {
       if (err) {
         reject(new Error('Cannot load the database'));
@@ -18,7 +19,7 @@ async function countStudents(path) {
       students.forEach((student) => {
         const studentData = student.split(','); // split les données par la virgule
         const field = studentData[3]; // Colonne field
-        if (field == 'CS') {
+        if (field === 'CS') {
           // ajoute l'étudiant correspondant à la liste
           csStudents.push(studentData[0]);
         }
@@ -30,7 +31,7 @@ async function countStudents(path) {
       students.forEach((student) => {
         const studentData = student.split(',');
         const field = studentData[3];
-        if (field == 'SWE') {
+        if (field === 'SWE') {
           sweStudents.push(studentData[0]);
         }
       });
@@ -42,4 +43,4 @@ async function countStudents(path) {
   });
 }
 
-  module.exports = countStudents;
+module.exports = countStudents;

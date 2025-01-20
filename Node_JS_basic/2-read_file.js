@@ -1,5 +1,6 @@
+const fs = require('fs');
+
 function countStudents(path) {
-  const fs = require('fs');
   fs.readFile(path, 'utf8', (err, data) => {
     if (err) {
       throw new Error('Cannot load the database');
@@ -16,7 +17,7 @@ function countStudents(path) {
     students.forEach((student) => {
       const studentData = student.split(','); // split les données par la virgule
       const field = studentData[3]; // Colonne field
-      if (field == 'CS') {
+      if (field === 'CS') {
         // ajoute l'étudiant correspondant à la liste
         csStudents.push(studentData[0]);
       }
@@ -28,7 +29,7 @@ function countStudents(path) {
     students.forEach((student) => {
       const studentData = student.split(',');
       const field = studentData[3];
-      if (field == 'SWE') {
+      if (field === 'SWE') {
         sweStudents.push(studentData[0]);
       }
     });
