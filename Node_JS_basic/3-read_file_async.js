@@ -5,7 +5,7 @@ async function countStudents(path) {
     const data = await fs.readFile(path, 'utf8');
 
     const lines = data.trim().split('\n');
-    const students = lines.slice(1);
+    const students = lines.slice(1).filter((line) => line);
 
     console.log(`Number of students: ${students.length}`);
 
@@ -38,6 +38,5 @@ async function countStudents(path) {
     throw new Error('Cannot load the database');
   }
 }
-
 
 module.exports = countStudents;
