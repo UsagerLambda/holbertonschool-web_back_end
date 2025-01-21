@@ -34,7 +34,7 @@ function countStudents(path) {
       }
     });
 
-    process.stdout.write(`Number of students in CS: ${
+    process.stdout.write(`Number of students in SWE: ${
       sweStudents.length}. List: ${sweStudents.join(', ')}\n`);
   });
 }
