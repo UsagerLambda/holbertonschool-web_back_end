@@ -52,10 +52,10 @@ const app = http.createServer((req, res) => {
           `Number of students: ${studentData.totalStudents}`,
           `Number of students in CS: ${
             studentData.csStudents.length}. List: ${
-              studentData.csStudents.join(', ')}`,
+            studentData.csStudents.join(', ')}`,
           `Number of students in SWE: ${
             studentData.sweStudents.length}. List: ${
-              studentData.sweStudents.join(', ')}`,
+            studentData.sweStudents.join(', ')}`,
         ].join('\n');
         res.end(output);
       })
