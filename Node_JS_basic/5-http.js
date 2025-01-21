@@ -6,34 +6,32 @@ const databasePath = process.argv[2];
 async function countStudents(path) {
   try {
     const data = await fs.readFile(path, 'utf8');
-
     const lines = data.trim().split('\n');
-    const students = lines.slice(1).filter((line) => line);
+
+    if (lines.length <= 1) {
+      return 'Number of students: 0';
+    }
+
+    const students = lines.slice(1).filter((line) => line.trim());
 
     const csStudents = [];
     const sweStudents = [];
 
     students.forEach((student) => {
       const studentData = student.split(',');
-      const field = studentData[3];
+      const field = studentData[3].trim();
       if (field === 'CS') {
-        csStudents.push(studentData[0]);
+        csStudents.push(studentData[0].trim());
+      } else if (field === 'SWE') {
+        sweStudents.push(studentData[0].trim());
       }
     });
 
-    students.forEach((student) => {
-      const studentData = student.split(',');
-      const field = studentData[3];
-      if (field === 'SWE') {
-        sweStudents.push(studentData[0]);
-      }
-    });
-
-    return {
-      totalStudents: students.length,
-      csStudents,
-      sweStudents,
-    };
+    return [
+      `Number of students: ${students.length}`,
+      `Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}`,
+      `Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`,
+    ].join('\n');
   } catch (error) {
     throw new Error('Cannot load the database');
   }
@@ -42,27 +40,21 @@ async function countStudents(path) {
 const app = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
+
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     countStudents(databasePath)
-      .then((studentData) => {
-        const output = [
-          'This is the list of our students',
-          `Number of students: ${studentData.totalStudents}`,
-          `Number of students in CS: ${
-            studentData.csStudents.length}. List: ${
-            studentData.csStudents.join(', ')}`,
-          `Number of students in SWE: ${
-            studentData.sweStudents.length}. List: ${
-            studentData.sweStudents.join(', ')}`,
-        ].join('\n');
-        res.end(output);
+      .then((output) => {
+        res.end(`This is the list of our students\n${output}`);
       })
       .catch((error) => {
-        res.statusCode = 404;
+        res.statusCode = 500;
         res.end(error.message);
       });
+  } else {
+    res.statusCode = 404;
+    res.end('Not Found');
   }
 });
 
