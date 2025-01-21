@@ -48,9 +48,9 @@ app.get('/students', async (req, res) => {
   try {
     const database = process.argv[2];
     const studentsData = await countStudents(database);
-    res.send(`This is the list of our students\n${studentsData}`);
+    res.end(`This is the list of our students\n${studentsData}`);
   } catch (error) {
-    res.send(`This is the list of our students\n${error.message}`);
+    res.end('Cannot load the database');
   }
 });
 
