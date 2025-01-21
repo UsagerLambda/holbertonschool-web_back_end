@@ -1,9 +1,11 @@
-const app = require('http');
+const http = require('http');
 const countStudents = require('./3-read_file_async');
 
 const databasePath = process.argv[2] || '';
 
-app.createServer((req, res) => {
+const app = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
   if (req.url === '/') {
     res.write('Hello Holberton School!');
   } else if (req.url === '/students') {
@@ -12,3 +14,5 @@ app.createServer((req, res) => {
   }
   res.end();
 }).listen(1245);
+
+module.exports = app;
