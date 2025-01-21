@@ -53,6 +53,9 @@ app.get('/students', (req, res) => {
     });
 });
 
-app.listen(1245);
+const PORT = 1245;
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
 
 module.exports = app;
