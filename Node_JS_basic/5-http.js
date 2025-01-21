@@ -14,10 +14,9 @@ async function countStudents(path) {
     const sweStudents = [];
 
     students.forEach((student) => {
-      const studentData = student.split(','); // split les données par la virgule
-      const field = studentData[3]; // Colonne field
+      const studentData = student.split(',');
+      const field = studentData[3];
       if (field === 'CS') {
-        // ajoute l'étudiant correspondant à la liste
         csStudents.push(studentData[0]);
       }
     });
@@ -51,8 +50,12 @@ const app = http.createServer((req, res) => {
         const output = [
           'This is the list of our students',
           `Number of students: ${studentData.totalStudents}`,
-          `Number of students in CS: ${studentData.csStudents.length}. List: ${studentData.csStudents.join(', ')}`,
-          `Number of students in SWE: ${studentData.sweStudents.length}. List: ${studentData.sweStudents.join(', ')}`,
+          `Number of students in CS: ${
+            studentData.csStudents.length}. List: ${
+              studentData.csStudents.join(', ')}`,
+          `Number of students in SWE: ${
+            studentData.sweStudents.length}. List: ${
+              studentData.sweStudents.join(', ')}`,
         ].join('\n');
         res.end(output);
       })

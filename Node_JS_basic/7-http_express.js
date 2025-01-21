@@ -15,10 +15,9 @@ async function countStudents(path) {
     const sweStudents = [];
 
     students.forEach((student) => {
-      const studentData = student.split(','); // split les données par la virgule
-      const field = studentData[3]; // Colonne field
+      const studentData = student.split(',');
+      const field = studentData[3];
       if (field === 'CS') {
-        // ajoute l'étudiant correspondant à la liste
         csStudents.push(studentData[0]);
       }
     });
