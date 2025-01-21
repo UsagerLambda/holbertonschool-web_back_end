@@ -29,8 +29,10 @@ async function countStudents(path) {
 
     return [
       `Number of students: ${students.length}`,
-      `Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}`,
-      `Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`,
+      `Number of students in CS: ${
+        csStudents.length}. List: ${csStudents.join(', ')}`,
+      `Number of students in SWE: ${
+        sweStudents.length}. List: ${sweStudents.join(', ')}`,
     ].join('\n');
   } catch (error) {
     throw new Error('Cannot load the database');
@@ -58,9 +60,6 @@ const app = http.createServer((req, res) => {
   }
 });
 
-const PORT = 1245;
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+app.listen(1245);
 
 module.exports = app;
