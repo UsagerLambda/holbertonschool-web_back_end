@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs').promises;
 
-const databasePath = process.argv[2] || '';
+const databasePath = process.argv[2];
 
 async function countStudents(path) {
   try {
@@ -35,12 +35,10 @@ async function countStudents(path) {
       csStudents,
       sweStudents,
     };
-
   } catch (error) {
     throw new Error('Cannot load the database');
   }
 }
-
 
 const app = http.createServer((req, res) => {
   res.statusCode = 200;
