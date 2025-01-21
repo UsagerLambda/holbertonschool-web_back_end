@@ -44,15 +44,14 @@ app.get('/', (req, res) => {
   res.end('Hello Holberton School!');
 });
 
-app.get('/students', (req, res) => {
-  countStudents(databasePath)
-    .then((output) => {
-      res.end(`This is the list of our students\n${output}`);
-    })
-    .catch((error) => {
-      res.statusCode = 500;
-      res.end(error.message);
-    });
+app.get('/students', async (req, res) => {
+  try {
+    const database = process.argv[2];
+    const studentsData = await countStudents(database);
+    res.send(`This is the list of our students\n${studentsData}`);
+  } catch (error) {
+    res.send(`This is the list of our students\n${error.message}`);
+  }
 });
 
 app.listen(1245);
