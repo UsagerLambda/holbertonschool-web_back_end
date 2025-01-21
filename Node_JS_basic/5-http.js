@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs').promises;
 
-const databasePath = process.argv[2];
+const path = process.argv[2];
 
 async function countStudents(path) {
   try {
@@ -39,24 +39,23 @@ async function countStudents(path) {
   }
 }
 
-const app = http.createServer((req, res) => {
+const app = http.createServer(async (req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
 
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    countStudents(databasePath)
-      .then((output) => {
-        res.end(`This is the list of our students\n${output}`);
-      })
-      .catch((error) => {
-        res.statusCode = 500;
-        res.end(error.message);
-      });
+    res.write('This is the list of our students\n');
+
+    try {
+      const data = await countStudents(path);
+      res.end(data);
+    } catch (error) {
+      res.end('Cannot load the database');
+    }
   } else {
-    res.statusCode = 404;
-    res.end('Not Found');
+    res.end('Not found');
   }
 });
 
