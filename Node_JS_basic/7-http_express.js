@@ -29,8 +29,10 @@ async function countStudents(path) {
 
     return [
       `Number of students: ${students.length}`,
-      `Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}`,
-      `Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`,
+      `Number of students in CS: ${
+        csStudents.length}. List: ${csStudents.join(', ')}`,
+      `Number of students in SWE: ${
+        sweStudents.length}. List: ${sweStudents.join(', ')}`,
     ].join('\n');
   } catch (error) {
     throw new Error('Cannot load the database');
