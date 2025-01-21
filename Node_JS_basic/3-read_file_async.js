@@ -1,46 +1,43 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 
 async function countStudents(path) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(path, 'utf8', (err, data) => {
-      if (err) {
-        reject(new Error('Cannot load the database'));
-        return;
+  try {
+    const data = await fs.readFile(path, 'utf8');
+
+    const lines = data.trim().split('\n');
+    const students = lines.slice(1);
+
+    console.log(`Number of students: ${students.length}`);
+
+    const csStudents = [];
+    const sweStudents = [];
+
+    students.forEach((student) => {
+      const studentData = student.split(','); // split les données par la virgule
+      const field = studentData[3]; // Colonne field
+      if (field === 'CS') {
+        // ajoute l'étudiant correspondant à la liste
+        csStudents.push(studentData[0]);
       }
-
-      const lines = data.trim().split('\n');
-      const students = lines.slice(1);
-
-      process.stdout.write(`Number of students: ${students.length}\n`);
-
-      const csStudents = [];
-      const sweStudents = [];
-
-      students.forEach((student) => {
-        const studentData = student.split(','); // split les données par la virgule
-        const field = studentData[3]; // Colonne field
-        if (field === 'CS') {
-          // ajoute l'étudiant correspondant à la liste
-          csStudents.push(studentData[0]);
-        }
-      });
-
-      process.stdout.write(`Number of students in CS: ${
-        csStudents.length}. List: ${csStudents.join(', ')}\n`);
-
-      students.forEach((student) => {
-        const studentData = student.split(',');
-        const field = studentData[3];
-        if (field === 'SWE') {
-          sweStudents.push(studentData[0]);
-        }
-      });
-
-      process.stdout.write(`Number of students in CS: ${
-        sweStudents.length}. List: ${sweStudents.join(', ')}\n`);
-      resolve();
     });
-  });
+
+    console.log(`Number of students in CS: ${
+      csStudents.length}. List: ${csStudents.join(', ')}`);
+
+    students.forEach((student) => {
+      const studentData = student.split(',');
+      const field = studentData[3];
+      if (field === 'SWE') {
+        sweStudents.push(studentData[0]);
+      }
+    });
+
+    console.log(`Number of students in SWE: ${
+      sweStudents.length}. List: ${sweStudents.join(', ')}`);
+  } catch (error) {
+    throw new Error('Cannot load the database');
+  }
 }
+
 
 module.exports = countStudents;
