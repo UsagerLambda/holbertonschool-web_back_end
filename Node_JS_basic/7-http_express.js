@@ -6,13 +6,13 @@ const app = express();
 async function countStudents(path) {
   try {
     const data = await fs.readFile(path, 'utf8');
-    const lines = data.trim().split('\n');
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
 
     if (lines.length <= 1) {
       throw new Error('Cannot load the database');
     }
 
-    const students = lines.slice(1).filter((line) => line.trim());
+    const students = lines.slice(1);
 
     const csStudents = [];
     const sweStudents = [];
